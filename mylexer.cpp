@@ -187,10 +187,50 @@ bool recognizeScientific(string s)
 					state = -1;
 				}
 				break;
-			case 3
+			case 3: if (s[i] == '0' || s[i] == '1' || s[i] == '2' || s[i] == '3' 
+				|| s[i] == '4' || s[i] == '5' || s[i] == '6' || s[i] == '7' 
+				|| s[i] == '8' || s[i] == '9')
+				{
+					state = 3;
+				}
+				else if (s[i] == 'E')
+				{
+					state = 4;
+				}
+				else
+				{
+					state = -1;
+				}
+				break;
+			case 4: if (s[i] == '+' || s[i] == '-' || s[i] == '1' 
+				|| s[i] == '2' || s[i] == '3' || s[i] == '4' || s[i] == '5' 
+				|| s[i] == '6' || s[i] == '7' || s[i] == '8' || s[i] == '9')
+				{
+					state = 5;
+					acceptable = true;
+				}
+				else
+				{
+					state = -1;
+				}
+				break;
+			case 5: if (s[i] == '0' || s[i] == '1' || s[i] == '2' || s[i] == '3' 
+				|| s[i] == '4' || s[i] == '5' || s[i] == '6' || s[i] == '7' 
+				|| s[i] == '8' || s[i] == '9')
+				{
+					state = 5;
+				}
+				else
+				{
+					state = -1;
+					acceptable = false;
+				}
+				break;
+			default:
+				i = s.length();
+				break;
 		} //switch
-		i++
+		i++;
 	}
-	return acceptable;		
-
+	return acceptable;
 }
